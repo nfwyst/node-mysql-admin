@@ -20,24 +20,23 @@ module.exports = function myadmin(app, port) {
   var server = http.createServer(app);
   var io = sock(server);
 
-  var expressListen = app.listen;
   app.listen = server.listen.bind(server);
 
   // ** Socket Controller
   require('./sockets/socketcontroller.js')(io);
 
   // ** Logs
-  var accessLogStream = fs.createWriteStream(__dirname + '/serverlogs/access.log', {flags: 'a'});
-  
+  var accessLogStream = fs.createWriteStream(__dirname + '/serverlogs/access.log', { flags: 'a' });
+
   // ** Third party middleware
   app.use(morgan('dev', {
-    stream:accessLogStream
+    stream: accessLogStream
   }));
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use('/myadmin', express.static(__dirname + '/public'));
   // creates secret.js with a random string if it hasn't been initialized\\
-  fs.readFile('./secret.js', function(err, data) {
+  fs.readFile('./secret.js', function (err, data) {
     if (err.code === 'ENOENT') {
       var randomString = randomstring.generate();
       var contents = "module.exports = '" + randomString + "';";
@@ -46,16 +45,16 @@ module.exports = function myadmin(app, port) {
     var secret = require('./secret.js');
     app.locals.secret = secret;
   });
-  
+
   // ** Routes
   app.use('/myadmin/api/auth', auth);
   app.use('/myadmin/api/db', database);
-  app.use('/myadmin/api/settings',settings);
-  app.use('/myadmin/api/system',system);
-  app.use('/myadmin/api/home',home);
+  app.use('/myadmin/api/settings', settings);
+  app.use('/myadmin/api/system', system);
+  app.use('/myadmin/api/home', home);
 
   // ** Middleware
-  return function myadmin(req,res,next) {
+  return function myadmin(req, res, next) {
     next();
   };
 };
