@@ -19,12 +19,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-init="currTab = 'home'">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: (currTab == 'home')}" ng-click="currTab = 'home'">
-          <a ui-sref="home">
-            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-            Overview
-          </a>
-        </li>
         <li ng-class="{active: (currTab == 'db')}" ng-click="currTab = 'db'">
           <a ui-sref="dbhome">
             <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>

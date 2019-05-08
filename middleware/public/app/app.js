@@ -54,15 +54,15 @@ angular.module('nodeadmin', [
         }
       })
 
-      .state('home', {
-        parent: 'main',
-        url: '',
-        templateUrl: 'app/home/home.html',
-        controller: 'HomeController',
-        data: {
-          requireLogin: true
-        }
-      })
+      // .state('home', {
+      //   parent: 'main',
+      //   url: '',
+      //   templateUrl: 'app/home/home.html',
+      //   controller: 'HomeController',
+      //   data: {
+      //     requireLogin: true
+      //   }
+      // })
 
       .state('settings', {
         abstract: true,
