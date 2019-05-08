@@ -4,7 +4,7 @@ angular.module('nodeadmin', [
   'nodeadmin.alertcenter',
   'nodeadmin.alertcenterfactory',
   'nodeadmin.socket',
-  'nodeadmin.home',
+  // 'nodeadmin.home',
   'nodeadmin.auth',
   'nodeadmin.main',
   'nodeadmin.settings',
